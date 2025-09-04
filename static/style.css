@@ -1,0 +1,191 @@
+/* ---------------- Base ---------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ---------------- Navbar ---------------- */
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 30px;
+    background-color: #007BFF;
+    padding: 12px 0;
+    border-radius: 8px;
+}
+
+.navbar li {
+    margin: 0 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ffe600;
+}
+
+/* ---------------- Headings ---------------- */
+h1, h2, h3, h4 {
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+/* ---------------- Tables ---------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    table-layout: fixed; /* standardized column widths */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+th:nth-child(1), td:nth-child(1) { width: 25%; } /* Category / Agency */
+th:nth-child(2), td:nth-child(2) { width: 20%; } /* Progression / Lane */
+th:nth-child(3), td:nth-child(3) { width: 20%; } /* Number of Teams / Team Name */
+th:nth-child(4), td:nth-child(4) { width: 35%; } /* Agencies/Groups or Details */
+
+th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f4f6f8;
+}
+
+tr:hover {
+    background-color: #e0ebff;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn.reset {
+    background-color: #dc3545;
+}
+
+.btn.reset:hover {
+    background-color: #a71d2a;
+}
+
+/* ---------------- Flash Messages ---------------- */
+.flash {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* ---------------- Forms ---------------- */
+form {
+    margin-top: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    max-width: 400px; /* adjust size */
+    height: auto;
+}

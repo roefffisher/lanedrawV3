@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% set priority_agencies = ['BCA', 'HDB', 'MNDHQ', 'NPARKS', 'URA'] %}
+
+{% set first_table = agencies|selectattr('department', 'in', priority_agencies)|list %}
+{% set second_table = agencies|rejectattr('department', 'in', priority_agencies)|list %}
+
+<div class="logo-container">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo">
+</div>
+
+<h1>Agencies/Groups Summary</h1>
+
+<!-- First Table: Inter-Agency Teams -->
+{% if first_table %}
+<h2>MND Inter-Agency Teams</h2>
+<table>
+    <tr>
+        <th>Agency/Group</th>
+        <th>Number of Teams</th>
+        <th>Categories</th>
+    </tr>
+    {% for agency in first_table %}
+    <tr>
+        <td style="width:1%;">{{ agency.department }}</td>
+        <td>
+            {% set total_teams = teams|selectattr('department','equalto',agency.department)|list|length %}
+            {{ total_teams }}
+        </td>
+        <td>
+            {% for cat in agency.categories %}
+                {% set cat_teams = teams|selectattr('department','equalto',agency.department)|selectattr('category','equalto',cat)|list %}
+                {{ cat }}{% if cat_teams|length == 2 %} (2){% endif %}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<!-- Second Table: HDB Inter-Group Teams -->
+{% if second_table %}
+<h2>HDB Inter-Group Teams</h2>
+<table>
+    <tr>
+        <th>Agency/Group</th>
+        <th>Number of Teams</th>
+        <th>Categories</th>
+    </tr>
+    {% for agency in second_table %}
+    <tr>
+        <td style="width:1%;">{{ agency.department }}</td>
+        <td>
+            {% set total_teams = teams|selectattr('department','equalto',agency.department)|list|length %}
+            {{ total_teams }}
+        </td>
+        <td>
+            {% for cat in agency.categories %}
+                {% set cat_teams = teams|selectattr('department','equalto',agency.department)|selectattr('category','equalto',cat)|list %}
+                {{ cat }}{% if cat_teams|length == 2 %} (2){% endif %}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

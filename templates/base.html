@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dragon Boat Race</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+    <ul class="navbar">
+        <li><a href="{{ url_for('home') }}">Agencies/Groups</a></li>
+        <li><a href="{{ url_for('index') }}">Race Categories</a></li>
+        <li><a href="{{ url_for('lane_draw') }}">Lane Draw</a></li>
+    </ul>
+</nav>
+
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

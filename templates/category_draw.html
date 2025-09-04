@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ category }}</h1>
+
+{% set single_final_categories = [
+    "MND Inter-Agency 200m Women",
+    "MND Inter-Agency 200m Open",
+    "MND Inter-Agency 200m Minister's Challenge Mixed",
+    "HDB Inter-Group 200m Women",
+    "HDB Inter-Group 200m Veteran-Mixed"
+] %}
+
+{% set numbered_final_categories = [
+    "ClubHDB Inter-Group 100m Sprint Open"
+] %}
+
+{% if not drawn %}
+<h3>Teams:</h3>
+<ol style = "padding-left: 18px">
+    {% for team in teams %}
+    <li>{{ team.department }} - {{ team.name }}</li>
+    {% endfor %}
+</ol>
+<form method="post">
+    <button type="submit" class="btn">Perform Lane Draw</button>
+</form>
+{% else %}
+<br/>
+<h3>Lane Draw Results</h3>
+<form method="post" action="{{ url_for('category_redraw', category=category) }}">
+    <button type="submit" class="btn reset">Re-draw</button>
+</form>
+<br />
+{% for heat in heats %}
+    {% if category in single_final_categories %}
+        <h4>Final</h4>
+    {% elif category in numbered_final_categories %}
+        <h4>Final {{ heat.heat_number }}</h4>
+    {% else %}
+        <h4>Heat {{ heat.heat_number }}</h4>
+    {% endif %}
+    <table>
+        <tr><th>Lane</th><th>Team</th><th>Agency/Group</th></tr>
+        {% for row in heat.rows %}
+        <tr>
+            <td>{{ row.lane }}</td>
+            <td>{{ row.team }}</td>
+            <td>{{ row.department }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+{% endif %}
+{% endblock %}

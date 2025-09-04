@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Race Categories</h1>
+
+<!-- Add New Team button under the title -->
+<div style="margin: 15px 0;">
+    <a href="{{ url_for('add_team') }}" class="btn">Add New Team</a>
+</div>
+
+{% set categories = teams|groupby('category') %}
+
+{% for category, category_teams in categories %}
+<div class="category-table">
+    <h2>{{ category }} ({{ category_teams|length }} Teams)</h2>
+    <table>
+        <tr>
+            <th>Team</th>
+            <th>Agency/Group</th>
+            <th>Actions</th>
+        </tr>
+        {% for team in category_teams %}
+        <tr>
+            <td>{{ team.name }}</td>
+            <td>{{ team.department }}</td>
+            <td>
+                <form action="{{ url_for('delete_team', team_id=team.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn reset">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endfor %}
+
+<!-- Reset All button below the tables with confirmation -->
+<div style="margin-top: 20px;">
+    <form action="{{ url_for('reset_all') }}" method="POST" onsubmit="return confirm('Are you sure you want to reset all teams? This action cannot be undone.');">
+        <button type="submit" class="btn reset">Reset All</button>
+    </form>
+</div>
+
+{% endblock %}

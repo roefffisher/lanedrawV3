@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Team</h1>
+
+<form method="post" style="max-width:400px; font-size:16px;">
+    <label for="category">Category</label><br>
+    <select name="category" id="category" required class="form-field">
+        <option value="" disabled selected>Select Category</option>
+        <option>MND Inter-Agency 200m Open</option>
+        <option>MND Inter-Agency 200m Women</option>
+        <option>MND Inter-Agency 200m Minister's Challenge Mixed</option>
+        <option>HDB Inter-Group 200m Open</option>
+        <option>HDB Inter-Group 200m Women</option>
+        <option>HDB Inter-Group 200m Mixed</option>
+        <option>HDB Inter-Group 200m Veteran-Mixed</option>
+        <option>ClubHDB Inter-Group 100m Sprint Open</option>
+    </select><br>
+
+    <label for="department">Agency/Group</label><br>
+    <select name="department" id="department" required class="form-field">
+        <option value="" disabled selected>Select Agency/Group</option>
+        <option>BCA</option>
+        <option>BQG</option>
+        <option>BIG</option>
+        <option>BRI</option>
+        <option>CDG-SCEG</option>
+        <option>CRG</option>
+        <option>DDG</option>
+        <option>EAPG</option>
+        <option>FIN</option>
+        <option>HDB</option>
+        <option>HMG</option>
+        <option>IAG</option>
+        <option>ISG</option>
+        <option>LEGAL</option>
+        <option>MNDHQ</option>
+        <option>NPARKS</option>
+        <option>PCG</option>
+        <option>PLG</option>
+        <option>SPRG</option>
+        <option>UPG</option>
+        <option>URA</option>
+    </select><br>
+
+    <label for="name">Team Name</label><br>
+    <input type="text" name="name" id="name" required class="form-field"><br>
+
+    <button type="submit" class="btn">Add Team</button>
+</form>
+
+<style>
+    .form-field {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Lane Draw Overview</h1>
+
+{% set finals_categories = [
+    "ClubHDB Inter-Group 100m Sprint Open",
+    "MND Inter-Agency 200m Women",
+    "MND Inter-Agency 200m Open",
+    "MND Inter-Agency 200m Minister's Challenge Mixed",
+    "HDB Inter-Group 200m Women",
+    "HDB Inter-Group 200m Veteran-Mixed"
+] %}
+
+{% if categories %}
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Progression</th>
+        <th>Number of Teams</th>
+        <th>Teams</th>
+    </tr>
+    {% for category in categories %}
+        {% set category_teams = teams|selectattr('category','equalto',category)|list %}
+        {% set progression = 'Heats' if category_teams|length > 6 else 'Finals' %}
+        {% if category in finals_categories %}
+            {% set progression = 'Final(s)' %}
+        {% endif %}
+    <tr>
+        <td><a href="{{ url_for('category_draw', category=category) }}">{{ category }}</a></td>
+        <td>{{ progression }}</td>
+        <td>{{ category_teams|length }}</td>
+        <td>
+            {% for team in category_teams %}
+                {{ loop.index }}. {{ team.name }}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No categories available. Add some teams first.</p>
+{% endif %}
+{% endblock %}
